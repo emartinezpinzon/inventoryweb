@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Pure CSS Login Form</title>
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+     <link rel="stylesheet" href="{% static 'login.css' %}">
+  </head>
+
+  <body>
+      <div class="login">
+      	<h1>Login</h1>
+          <form method="post">
+              {% csrf_token %}
+            {{form}}
+              <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+          </form>
+      </div>
+  </body>
+</html>
