@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, TemplateView, ListView
 from forms import LoginForm
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
+from models import Product
 
 
 class LoginView(FormView):
@@ -26,7 +27,6 @@ class LoginView(FormView):
                                     password=form.cleaned_data['password'])
                 if user is not None and user.is_active:
                     login(request, user)
-                    print self.success_url, "IMPRIMIENDO EL SELF.SUCCES_URL"
                     return HttpResponseRedirect(self.success_url)
         else:
             form = LoginForm()
@@ -39,5 +39,12 @@ class DashboardView(TemplateView):
     template_name = "dashboard.html"
 
 
+class ProductView(ListView):
+    template_name = "productos.html"
+    model = Product
+    context_object_name = 'products'
+
+
 login_view = LoginView.as_view()
 dashboard_view = DashboardView.as_view()
+products_view = ProductView.as_view()
