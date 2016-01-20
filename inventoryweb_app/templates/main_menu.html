@@ -1,0 +1,20 @@
+{%  load static %}
+<section class="sidebar">
+    <ul class="sidebar-menu">
+        <li {% if request.get_full_path == "/dashboard/" %}class="active"{% endif %}>
+        <a href="{%url 'dashboard'%}">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+        </a>
+        </li>
+        <li {% if request.get_full_path == "/productos/" %}class="active"{% endif %}>
+            <a href="{%url 'products'%}">
+                <i class="fa fa-shopping-basket"></i> <span>Productos</span>
+            </a>
+        </li>
+        <li {% if request.get_full_path == "/categorias/" %}class="active"{% endif %}>
+            <a href="{%url 'categorys'%}">
+                <i class="fa fa-book"></i> <span>Categorias</span>
+            </a>
+    </ul>
+</section>
+<!-- /.sidebar -->

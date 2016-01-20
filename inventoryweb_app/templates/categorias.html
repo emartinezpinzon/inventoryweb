@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+{% load static%}
+
+
+{% block content%}
+<div class="panel">
+    <header class="panel-heading">
+    Categorias
+    </header>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th style="width: 10px">#</th>
+                <th>Categoria</th>
+                <th>Cantidad</th>
+            </tr>
+            {% for categoria in categorys%}
+            <tr>
+                <td>{{categoria.id}}</td>
+                <td>{{categoria.name}}</td>
+                <td>Cantidad</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div><!-- /.panel-body -->
+
+{% endblock content%}

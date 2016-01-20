@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
-from models import Product
+from models import Product, Category
 
 
 class LoginView(FormView):
@@ -44,7 +44,13 @@ class ProductView(ListView):
     model = Product
     context_object_name = 'products'
 
+class CategoryView(ListView):
+    template_name = "categorias.html"
+    model = Category
+    context_object_name = 'categorys'
+
 
 login_view = LoginView.as_view()
 dashboard_view = DashboardView.as_view()
 products_view = ProductView.as_view()
+categorys_view = CategoryView.as_view()

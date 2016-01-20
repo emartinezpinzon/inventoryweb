@@ -7,7 +7,7 @@
      <!-- bootstrap 3.0.2 -->
     <link href="{% static 'dashboard/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
-    <link href="{% static 'dashboard/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link href="{% static 'dashboard/css/ionicons.min.css' %}" rel="stylesheet" type="text/css" />
     <!-- Morris chart -->
@@ -41,8 +41,6 @@
 
     </style>
 </head>
-
-
       <body class="skin-black">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
@@ -93,24 +91,8 @@
                 <div class="wrapper row-offcanvas row-offcanvas-left">
                     <!-- Left side column. contains the logo and sidebar -->
                     <aside class="left-side sidebar-offcanvas">
-                        <!-- sidebar: style can be found in sidebar.less -->
-                        <section class="sidebar">
-                            <!-- /.search form -->
-                            <!-- sidebar menu: : style can be found in sidebar.less -->
-                            <ul class="sidebar-menu">
-                                <li class="active">
-                                    <a href="{%url 'dashboard'%}">
-                                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{%url 'products'%}">
-                                        <i class="fa fa-gavel"></i> <span>Productos</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </section>
-                        <!-- /.sidebar -->
+                    <!-- menu lateral de dashboard -->
+                    {% include "main_menu.html" %}
                     </aside>
 
                     <aside class="right-side">
