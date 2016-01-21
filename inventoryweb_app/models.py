@@ -21,5 +21,6 @@ class Product(models.Model):
     price_out = models.IntegerField()
     unit = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
+
     def __unicode__(self):
         return self.name
