@@ -8,6 +8,8 @@ from django.contrib.auth import login
 from django.http import HttpResponseRedirect, HttpResponse
 from models import Product, Category
 from django.core import serializers
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 class LoginView(FormView):
@@ -40,12 +42,25 @@ class DashboardView(TemplateView):
     template_name = "dashboard.html"
 
 
-class ProductView(ListView):
+class ProductView(View):
     """Mustra los nombre de los productos con su respectiva información"""
     template_name = "productos.html"
-    model = Product
-    context_object_name = 'products'
 
+    def get(self, request, *args, **kwargs):
+        products_list = Product.objects.all()
+        paginator = Paginator(products_list, 10) # Muestra 10 productos por página
+
+        page = request.GET.get('page')
+        try:
+            products = paginator.page(page)
+        except PageNotAnInteger:
+            # si el parametro page no es un int.
+            products = paginator.page(1)
+        except EmptyPage:
+            # si la pag esta fuera de rango devuelve la ultima por default.
+            products = paginator.page(paginator.num_pages)
+
+        return render(request, self.template_name, {'products': products})
 
 class CategoryView(ListView):
     """Mustra las categorias en la que estan agrupada los diferentes productos"""
